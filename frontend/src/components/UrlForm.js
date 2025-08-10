@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api'; // <-- IMPORT our new api client
 
 function UrlForm() {
     const [originalUrl, setOriginalUrl] = useState('');
@@ -17,8 +17,8 @@ function UrlForm() {
         }
 
         try {
-            // The proxy in package.json will redirect this to http://localhost:5000/api/shorten
-            const res = await axios.post('http://localhost:5001/api/shorten', { originalUrl });
+            // Use our new 'api' instance. The path is relative.
+            const res = await api.post('/api/shorten', { originalUrl }); // <-- USE our api client
             setShortUrl(res.data.shortUrl);
         } catch (err) {
             setError('Failed to shorten URL. Please try again.');

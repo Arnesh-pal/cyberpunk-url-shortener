@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api'; // <-- IMPORT our new api client
+
+// Get the base URL directly from our api instance for the clickable links
+const API_BASE_URL = api.defaults.baseURL;
 
 function AdminPage() {
     const [urls, setUrls] = useState([]);
@@ -8,34 +11,21 @@ function AdminPage() {
 
     const fetchUrls = async () => {
         try {
-            // We set loading to false only after the first fetch
-            // subsequent fetches will happen in the background.
-            const res = await axios.get('http://localhost:5001/api/urls');
+            const res = await api.get('/api/urls'); // <-- USE our api client
             setUrls(res.data);
         } catch (err) {
             setError('Failed to fetch URL data.');
             console.error(err);
         } finally {
-            // Ensure loading is set to false after the first fetch
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        // --- NEW: Polling Logic ---
-
-        // 1. Fetch the data immediately when the component loads.
         fetchUrls();
-
-        // 2. Set up an interval to fetch the data every 5 seconds.
-        const intervalId = setInterval(fetchUrls, 5000); // 5000 milliseconds = 5 seconds
-
-        // 3. This is a crucial cleanup function.
-        //    React runs this when the component is unmounted (e.g., you navigate to another page).
-        //    It stops the interval so it doesn't keep running in the background forever.
+        const intervalId = setInterval(fetchUrls, 5000);
         return () => clearInterval(intervalId);
-
-    }, []); // The empty array [] means this effect runs only once when the component mounts.
+    }, []);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p className="error">{error}</p>;
@@ -60,7 +50,8 @@ function AdminPage() {
                                 </a>
                             </td>
                             <td>
-                                <a href={`http://localhost:5001/${url.shortCode}`} target="_blank" rel="noopener noreferrer">
+                                {/* Use the base URL for the link */}
+                                <a href={`${API_BASE_URL}/${url.shortCode}`} target="_blank" rel="noopener noreferrer">
                                     {url.shortCode}
                                 </a>
                             </td>
