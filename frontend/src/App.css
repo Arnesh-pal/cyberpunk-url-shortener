@@ -161,6 +161,7 @@ table {
   margin-top: 20px;
   border: 1px solid var(--border-color);
   box-shadow: 0 0 15px rgba(0, 246, 255, 0.2);
+  table-layout: fixed;
 }
 
 th,
