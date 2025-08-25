@@ -52,9 +52,21 @@ mongoose.connect(process.env.MONGO_URI)
 // --- API Routes ---
 // The server will only handle requests after the DB connection is successful
 
+// ROOT ROUTE - For confirming the server is live
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Welcome to the Cyberpunk URL Shortener API!' });
+});
+
+// HEALTH CHECK ROUTE - For Uptime Robot
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'UP' });
+});
+
+
 // POST /api/shorten
 app.post('/api/shorten', async (req, res) => {
     const { originalUrl } = req.body;
+    // Make sure BASE_URL is set in your Render environment variables
     const baseUrl = process.env.BASE_URL;
 
     if (!originalUrl) {
