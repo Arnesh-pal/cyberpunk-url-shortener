@@ -203,3 +203,17 @@ td a:hover {
   text-decoration: underline;
   color: var(--secondary-glow);
 }
+
+/* Add this class to any table cell you want to truncate */
+.truncate-url {
+  max-width: 250px;
+  /* Adjust this width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* This helps align content within the table cells vertically */
+td {
+  vertical-align: middle;
+}

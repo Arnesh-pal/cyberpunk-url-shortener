@@ -44,13 +44,20 @@ function AdminPage() {
                 <tbody>
                     {urls.map((url) => (
                         <tr key={url.shortCode}>
-                            <td>
-                                <a href={url.originalUrl} target="_blank" rel="noopener noreferrer">
+                            {/* V-- APPLY THE CHANGES HERE --V */}
+                            <td className="truncate-url">
+                                <a
+                                    href={url.originalUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title={url.originalUrl}  // <-- ADD THIS: Shows full URL on hover
+                                >
                                     {url.originalUrl}
                                 </a>
                             </td>
+                            {/* ^-- END OF CHANGES --^ */}
+
                             <td>
-                                {/* Use the base URL for the link */}
                                 <a href={`${API_BASE_URL}/${url.shortCode}`} target="_blank" rel="noopener noreferrer">
                                     {url.shortCode}
                                 </a>
@@ -59,6 +66,7 @@ function AdminPage() {
                         </tr>
                     ))}
                 </tbody>
+
             </table>
         </div>
     );
