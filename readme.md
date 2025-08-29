@@ -6,7 +6,12 @@ A full-stack MERN application that shortens long URLs, built with a futuristic, 
 
 ## ⛓️ Live Demo
 
-### [> Jack In Now <](https://cyberpunk-url-shortener-1.onrender.com/)
+### [Live URL](https://cyberpunk-url-shortener-1.onrender.com/)
+
+| Link Shortener | Admin Page (History of Shortened URLs) |
+| :---: | :---: |
+| <img width="881" height="391" alt="Link Shortener" src="https://github.com/user-attachments/assets/d576a410-857d-4e6e-9b12-149c9c5b1d7c" /> | <img width="897" height="806" alt="Admin Page" src="https://github.com/user-attachments/assets/91f18f38-df99-40b5-ba77-cffc7e150579" /> |
+
 
 
 
