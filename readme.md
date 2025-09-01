@@ -53,7 +53,7 @@ To run this project on your local machine, follow these steps.
 
 ### **1. Clone the Repository**
 ```bash
-git clone [https://github.com/your-username/cyberpunk-url-shortener.git](https://github.com/your-username/cyberpunk-url-shortener.git)
+git clone [https://github.com/Arnesh-pal/cyberpunk-url-shortener.git]
 cd cyberpunk-url-shortener
 ```
 
