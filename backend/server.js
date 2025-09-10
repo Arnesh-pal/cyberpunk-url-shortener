@@ -28,25 +28,14 @@ app.use((req, res, next) => {
 
 
 // --- Database Connection ---
-console.log('Attempting to connect to MongoDB...');
+// --- NEW CODE for Vercel ---
+// Connect to the database right away
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        // This will only run if the connection is successful
-        console.log('✅ MongoDB connected successfully.');
+    .then(() => console.log('✅ MongoDB connected successfully.'))
+    .catch(err => console.error('❌ MongoDB connection error:', err.message));
 
-        // We moved app.listen INSIDE the .then() block
-        // This ensures the server only starts after the database is ready.
-        app.listen(PORT, () => {
-            console.log(`🚀 Server is running on port ${PORT}`);
-        });
-
-    })
-    .catch(err => {
-        // This will run if the connection fails
-        console.error('❌ MongoDB connection error: Could not connect.');
-        console.error('Error Details:', err.message);
-        process.exit(1); // Exit the script with an error code
-    });
+// Export the Express app for Vercel to use
+module.exports = app;
 
 
 // --- API Routes ---
